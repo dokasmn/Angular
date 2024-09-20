@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './filter.component.css'
 })
 export class FilterComponent {
-
+    
 }

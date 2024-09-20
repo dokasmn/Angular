@@ -1,0 +1,16 @@
+
+<div class="mb-40">
+    <div class="mb-10">
+        <div class="flex justify-around">
+          <div class="flex flex-col border p-4 w-80 h-96" *ngFor="let product of visibleProducts">
+            <h4>{{ product.title }}</h4>
+            <p>{{ product.description }}</p>
+            <p>{{ product.price | currency:'BRL' }}</p>
+          </div>
+        </div>
+    </div>
+    <div class="flex justify-between px-20">
+        <button (click)="moveLeft()" class="carousel-arrow left-arrow">&lt;</button>
+        <button (click)="moveRight()" class="carousel-arrow right-arrow">&gt;</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<app-header></app-header>
+<!-- <app-product-register-form></app-product-register-form> -->
+<div class="flex justify-center mt-40">
+    <form [formGroup]="form" class="flex flex-col items-center">
+        <div class="flex flex-col justify-around border p-8 mb-10">
+            <div class="flex mb-8">
+                <label for="product-name">Nome Produto: </label>
+                <input type="text" id="product-name" class="border-b ml-4 outline-none" [formControl]="form.controls.title">
+            </div>
+            <div class="flex flex-col mb-10">
+                <label for="product-description" class="mb-4">Descrição Produto: </label>
+                <textarea id="product-description" class="outline-none border ml-4 h-40" [formControl]="form.controls.description"></textarea>
+            </div>
+            <div class="flex mb-4">
+                <label for="product-name">Preço do Produto: </label>
+                <input type="text" id="product-name" class="border-b ml-4 outline-none" [formControl]="form.controls.price">
+            </div>
+        </div>
+        <input type="submit" value="Finalizar Cadastro" class="border py-1 px-4 bg-black text-slate-50" (click)="registerProduct()">
+    </form>
+</div>
+{{ response?.title }}
+{{ response?.description }}
+{{ response?.price }}
+
+
+<app-footer></app-footer>
