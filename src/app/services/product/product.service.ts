@@ -42,7 +42,8 @@ export class ProductService {
             id: product.id,
             title: product.title,
             description: product.description,
-            price: product.price
+            price: product.price,
+            thumbnail: product.thumbnail
           }));
           
           return res.clone({
@@ -69,5 +70,18 @@ export class ProductService {
         });
       })
     );
+  }
+
+  // getCartProducts(): Observable<HttpResponse<ProductResponse[]>> {
+    getCartProducts(): void {
+    // return [
+    //   {
+    //     'id': 1,
+    //     'title': "oi",
+    //     'description': "oi",
+    //     'price': 1,
+    //     'thumbnail': "oi",
+    //   }
+    // ]
   }
 }
