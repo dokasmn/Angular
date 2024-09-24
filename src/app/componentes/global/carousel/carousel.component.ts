@@ -52,19 +52,8 @@ export class CarouselComponent implements OnInit {
     }
   }
 
-  addToCart(productId: number | undefined, quantity: number = 1): void {
-    if (productId !== undefined) {
-      this.productService.addToCart(productId, quantity).subscribe({
-        next: (data) => {
-          console.log('Produto adicionado ao carrinho:', data.body);
-        },
-        error: (error) => {
-          console.error('Erro ao adicionar produto ao carrinho:', error);
-        }
-      });
-    } else {
-      console.error('ID do produto é indefinido');
-    }
+  addToCart(product: ProductResponse): void {
+    this.productService.addToCart(product)
   }
   
 }

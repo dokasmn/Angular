@@ -1,0 +1,38 @@
+<main class="h-screen">
+
+    <app-header></app-header>
+    
+    <section class="flex mt-32 h-full">
+        <div class="flex flex-col w-1/2 h-full border-r-2">
+            <h4 class="mb-8 ml-20 text-2xl">Shopping cart</h4>
+            <table class="ml-12">
+                <thead>
+                    <tr class="flex mb-4 border-b-2 border-t-2 py-8">
+                        <th class="px-4 w-32">Id</th>
+                        <th class="px-4 w-80">Product</th>
+                        <th class="px-4 w-32">Price</th>
+                        <th class="px-4">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let product of products">
+                    <tr class="flex cursor-pointer hover:bg-slate-100">
+                        <td class="mb-4 px-4 w-32 text-center">
+                            <p>{{ product.id }}</p>
+                        </td>
+                        <td class="px-4 w-80 text-center">
+                            <p>{{ product.title }}</p>
+                        </td>
+                        <td class="px-4 w-32 text-center">
+                            <p>{{ product.price | currency:'BRL' }}</p>
+                        </td>
+                        <td class="px-4 w-24 text-center">
+                            <p>1</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-col w-1/2 h-screen"></div>
+    </section>
+</main>
+

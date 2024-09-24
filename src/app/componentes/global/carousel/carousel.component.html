@@ -3,13 +3,13 @@
       <div class="flex justify-around mx-20">
         <div class="flex flex-col p-4 h-100 relative mx-2 border shadow-lg" *ngFor="let product of visibleProducts">
           <div class="w-100 h-50 flex justify-center mb-4">
-            <img src="imagens/product-image.png" alt="">
+            <img src='{{ product.thumbnail }}' alt="">
           </div>
           <h4 class="mb-4 text-2xl">{{ product.title }}</h4>
           <p class="mb-10">{{ product.description }}</p>
           <div class="flex justify-between absolute bottom-1 w-72 mb-2">
             <p>{{ product.price | currency:'BRL' }}</p>
-            <input type="button" value="Add to cart" class="border py-1 px-3 bg-black text-slate-50 cursor-pointer" (click)="addToCart(product.id!)">
+            <input type="button" value="Add to cart" class="border py-1 px-3 bg-black text-slate-50 cursor-pointer" (click)="addToCart(product)">
           </div>
         </div>
       </div>
