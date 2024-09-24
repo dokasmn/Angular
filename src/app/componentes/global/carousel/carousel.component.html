@@ -9,7 +9,7 @@
           <p class="mb-10">{{ product.description }}</p>
           <div class="flex justify-between absolute bottom-1 w-72 mb-2">
             <p>{{ product.price | currency:'BRL' }}</p>
-            <input type="button" value="Add to cart" class="border py-1 px-3 bg-black text-slate-50 cursor-pointer" (click)="addToCart(product.id!)">
+            <input type="button" value="Add to cart" class="border py-1 px-3 bg-black text-slate-50 cursor-pointer" (click)="addToCart(product)">
           </div>
         </div>
       </div>

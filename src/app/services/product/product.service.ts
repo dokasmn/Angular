@@ -11,7 +11,8 @@ export class ProductService {
 
   registerCon = 'https://dummyjson.com/products/add';
   listCon = 'https://dummyjson.com/products';
-  cartCon = 'https://dummyjson.com/carts/add'; // URL para adicionar ao carrinho
+  cartCon = 'https://dummyjson.com/carts/add';
+  cartListCon = 'https://dummyjson.com/carts/user/5'
 
   registerProduct(id: number, title: string, description: string, price: string): Observable<HttpResponse<ProductResponse>> {
     return this._http.post<any>(this.registerCon, {
@@ -53,35 +54,17 @@ export class ProductService {
       );
   }
 
-  addToCart(productId: number, quantity: number = 1): Observable<HttpResponse<any>> {
-    return this._http.post<any>(this.cartCon, {
-      userId: 1, // Ajuste conforme necessário
-      products: [
-        {
-          id: productId,
-          quantity: quantity,
-        }
-      ]
-    }, { observe: 'response' })
-    .pipe(
-      map((res: HttpResponse<any>) => {
-        return res.clone({
-          body: res.body
-        });
-      })
-    );
+  addToCart(product: ProductResponse): void {
+    const storedCart = localStorage.getItem('cart');
+    let newCartProducts: ProductResponse[] = storedCart ? JSON.parse(storedCart) : []; 
+    newCartProducts.push(product);
+    localStorage.setItem('cart', JSON.stringify(newCartProducts))
   }
 
-  // getCartProducts(): Observable<HttpResponse<ProductResponse[]>> {
-    getCartProducts(): void {
-    // return [
-    //   {
-    //     'id': 1,
-    //     'title': "oi",
-    //     'description': "oi",
-    //     'price': 1,
-    //     'thumbnail': "oi",
-    //   }
-    // ]
+  getCartProducts(): ProductResponse[] {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
   }
+
+  
 }

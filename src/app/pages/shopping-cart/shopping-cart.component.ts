@@ -3,7 +3,6 @@ import { HeaderComponent } from "../../componentes/global/header/header.componen
 import { CommonModule } from '@angular/common';
 import { ProductResponse } from '../../interfaces/product-response';
 import { ProductService } from '../../services/product/product.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,13 +22,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   loadProductsInCart(): void {
-    this.productService.getCartProducts().subscribe({
-      next: (response: HttpResponse<ProductResponse[]>) => {
-        this.products = response.body || [];
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Erro ao carregar produtos', error);
-      }
-    });
+    this.products = this.productService.getCartProducts()
   }
 }
