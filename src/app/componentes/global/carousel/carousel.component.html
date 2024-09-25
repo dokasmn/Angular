@@ -22,4 +22,15 @@
       <i class="fas fa-chevron-right"></i>
     </button>
   </div>
+
+  <!-- Popup de Sucesso -->
+  <div *ngIf="showSuccessPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="text-lg font-bold text-gray-700">Produto adicionado ao carrinho!</h3>
+      <p class="text-sm text-gray-500 mt-2">Seu produto foi adicionado com sucesso ao carrinho.</p>
+      <button (click)="closeSuccessPopup()" class="bg-green-500 hover:bg-green-400 text-white py-2 px-4 rounded mt-4">
+        Fechar
+      </button>
+    </div>
+  </div>
 </div>

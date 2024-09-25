@@ -10,13 +10,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
+  @Input() products: ProductResponse[] = [];
   visibleProducts: ProductResponse[] = [];
   currentIndex: number = 0;
 
-  @Input() products: ProductResponse[] = [];
+  // Variável para controle do popup de sucesso
+  showSuccessPopup: boolean = false;
 
   constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.updateVisibleProducts();
+  }
+
+  ngOnChanges(): void {
+    this.updateVisibleProducts();
+  }
 
   updateVisibleProducts(): void {
     this.visibleProducts = this.products.slice(this.currentIndex, this.currentIndex + 3);
@@ -41,13 +51,17 @@ export class CarouselComponent {
   }
 
   addToCart(product: ProductResponse): void {
-    this.productService.addToCart(product);
+    this.productService.addToCart(product)
+    this.showSuccessPopup = true;
   }
 
+
+  closeSuccessPopup() {
+    this.showSuccessPopup = false;
+  }
+
+
   truncateDescription(description: string, maxLength: number): string {
-    if (description.length > maxLength) {
-      return description.slice(0, maxLength) + '...';
-    }
-    return description;
+    return description.length > maxLength ? description.slice(0, maxLength) + '...' : description;
   }
 }

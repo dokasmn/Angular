@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../componentes/global/header/header.component";
 import { FilterComponent } from "../../componentes/home/filter/filter.component";
 import { CarouselComponent } from "../../componentes/global/carousel/carousel.component";
@@ -16,23 +16,37 @@ import { ProductResponse } from '../../interfaces/product-response';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  products: ProductResponse[] = [];
+  featuredProducts: ProductResponse[] = []; // Produtos em destaque
 
   constructor(private productService: ProductService) {}
 
-  products:ProductResponse[] = []
-
   ngOnInit(): void {
     this.loadProducts();
+    this.loadFeaturedProducts(); // Carrega produtos em destaque
   }
 
   loadProducts(): void {
     this.productService.getProducts().subscribe({
-      next: (response: HttpResponse<ProductResponse[]>) => {
+      next: (response) => {
         this.products = response.body || [];
       },
-      error: (error: HttpErrorResponse) => {
+      error: (error) => {
         console.error('Erro ao carregar produtos', error);
+      }
+    });
+  }
+
+  loadFeaturedProducts(): void {
+    // Aqui você pode modificar para pegar apenas os produtos que deseja destacar
+    this.productService.getProducts().subscribe({
+      next: (response) => {
+        const allProducts = response.body || [];
+        this.featuredProducts = allProducts.filter(product => product.isFeatured); // Supondo que você tenha um campo isFeatured
+      },
+      error: (error) => {
+        console.error('Erro ao carregar produtos em destaque', error);
       }
     });
   }

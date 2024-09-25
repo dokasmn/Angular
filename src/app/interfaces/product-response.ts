@@ -1,7 +1,8 @@
 export interface ProductResponse {
-    id?: number;  // Tornar o id opcional, apenas temporariamente
+    id?: number;
     title: string;
     description: string;
     price: number;
     thumbnail?: string;
+    isFeatured? : string;
 }

@@ -7,11 +7,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterProductService } from '../../services/register-product/register-product.service';
 import { ProductResponse } from '../../interfaces/product-response';
 import { HttpResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register-product',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, ProductRegisterFormComponent, ReactiveFormsModule],
+  imports: [HeaderComponent, FooterComponent, ProductRegisterFormComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './register-product.component.html',
   styleUrl: './register-product.component.css'
 })
@@ -21,12 +22,13 @@ export class RegisterProductComponent {
   response! : ProductResponse;
   router = inject(Router);
 
+  showSuccessPopup: boolean = false; // Controla a visibilidade do popup de sucesso
+
   form = this._fb.group({
     title: ["", Validators.required],
     description: ["", Validators.required],
     price: ["", Validators.required]
   });
-
 
   registerProduct() {
     this.registerProductService
@@ -37,11 +39,16 @@ export class RegisterProductComponent {
       )
       .subscribe({
         next: (res: HttpResponse<ProductResponse>) => {
-          this.response = res.body!; 
+          this.response = res.body!;
+          this.showSuccessPopup = true; // Exibe o popup de sucesso
         },
         error: (err) => {
-          console.error('Erro ao fazer login:', err);
+          console.error('Erro ao registrar produto:', err);
         }
       });
+  }
+
+  closeSuccessPopup() {
+    this.showSuccessPopup = false; // Fecha o popup de sucesso
   }
 }
