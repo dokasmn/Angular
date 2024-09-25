@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductResponse } from '../../../interfaces/product-response';
 import { ProductService } from '../../../services/product/product.service';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,31 +10,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
-  products: ProductResponse[] = [];
+export class CarouselComponent {
   visibleProducts: ProductResponse[] = [];
   currentIndex: number = 0;
 
+  @Input() products: ProductResponse[] = [];
+
   constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.loadProducts();
-  }
-
-  loadProducts(): void {
-    this.productService.getProducts().subscribe({
-      next: (response: HttpResponse<ProductResponse[]>) => {
-        this.products = response.body || [];
-        this.updateVisibleProducts();
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Erro ao carregar produtos', error);
-      }
-    });
-  }
 
   updateVisibleProducts(): void {
     this.visibleProducts = this.products.slice(this.currentIndex, this.currentIndex + 3);
+    this.visibleProducts = this.visibleProducts.map(product => ({
+      ...product,
+      description: this.truncateDescription(product.description, 80)
+    }));
   }
 
   moveLeft(): void {
@@ -53,7 +41,13 @@ export class CarouselComponent implements OnInit {
   }
 
   addToCart(product: ProductResponse): void {
-    this.productService.addToCart(product)
+    this.productService.addToCart(product);
   }
-  
+
+  truncateDescription(description: string, maxLength: number): string {
+    if (description.length > maxLength) {
+      return description.slice(0, maxLength) + '...';
+    }
+    return description;
+  }
 }

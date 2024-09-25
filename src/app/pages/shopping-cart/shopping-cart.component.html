@@ -3,20 +3,20 @@
     <app-header></app-header>
     
     <section class="flex mt-32 h-full">
-        <div class="flex flex-col w-1/2 h-full border-r-2">
-            <h4 class="mb-8 ml-20 text-2xl">Shopping cart</h4>
+        <div class="flex flex-col w-auto h-2/3 border-r-2">
+            <h4 class="mb-8 ml-20 text-2xl text-zinc-600">Shopping cart</h4>
             <table class="ml-12">
                 <thead>
                     <tr class="flex mb-4 border-b-2 border-t-2 py-8">
-                        <th class="px-4 w-32">Id</th>
-                        <th class="px-4 w-80">Product</th>
-                        <th class="px-4 w-32">Price</th>
-                        <th class="px-4">Quantity</th>
+                        <th class="px-4 w-32 text-zinc-400">Id</th>
+                        <th class="px-4 w-80 text-zinc-400">Product</th>
+                        <th class="px-4 w-32 text-zinc-400">Price</th>
+                        <th class="px-4 text-zinc-400">Quantity</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let product of products">
-                    <tr class="flex cursor-pointer hover:bg-slate-100">
-                        <td class="mb-4 px-4 w-32 text-center">
+                    <tr class="flex items-center cursor-pointer hover:bg-slate-100 py-2">
+                        <td class="px-4 w-32 text-center">
                             <p>{{ product.id }}</p>
                         </td>
                         <td class="px-4 w-80 text-center">

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     const currentRoute = this.router.url;
-    if (currentRoute === '/home' || currentRoute === '') {
+    if (currentRoute === '/' || currentRoute === '/login') {
       this.isDarkBackground = true;
     } else {
       this.isDarkBackground = false;
