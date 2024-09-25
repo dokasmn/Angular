@@ -1,22 +1,22 @@
-<div class="py-20 relative bg-white">
+<div class="relative">
+  <div class="py-10 bg-white flex justify-center">
     <div class="flex justify-between items-center">
-      <!-- Categoria -->
-      <div class="flex overflow-x-auto space-x-6">
+      <div class="flex items-center overflow-x-auto space-x-16">
         <div *ngFor="let category of categories" class="flex flex-col items-center space-y-2">
-          <div class="w-24 h-24 rounded-full bg-purple-600 flex items-center justify-center">
+          <div class="w-32 h-32 rounded-full bg-zinc-200 flex items-center justify-center hover:bg-zinc-100">
             <img [src]="category.image" alt="{{ category.name }}" class="object-contain h-full w-full rounded-full" />
           </div>
           <p class="text-center text-gray-700 font-medium">{{ category.name }}</p>
         </div>
       </div>
-  
-      <div class="flex justify-between px-16 absolute w-full top-1/2">
-        <button (click)="moveLeft()" class="carousel-arrow left-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button (click)="moveRight()" class="carousel-arrow right-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
     </div>
   </div>
+  <!-- <div class="flex justify-between absolute w-full top-1/2">
+    <button (click)="moveLeft()" class="carousel-arrow left-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a esquerda">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button (click)="moveRight()" class="carousel-arrow right-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a direita">
+      <i class="fas fa-chevron-right"></i>
+    </button>    
+  </div> -->
+</div> 

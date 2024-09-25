@@ -1,23 +1,20 @@
-<main class="h-screen">
-
+<main class="h-2/3 mb-96">
     <app-header></app-header>
-
-    <section class="flex mt-32 h-full mx-8">
-        <!-- Tabela de Produtos no Carrinho -->
-        <div class="flex flex-col w-3/5 h-auto border-r-2 pr-8">
+    <section class="flex pt-48 h-2/3 mx-8">
+        <div class="flex flex-col w-3/5 border-r-2 pr-8">
             <h4 class="mb-8 text-2xl text-zinc-600">Shopping cart</h4>
             <table class="w-full">
                 <thead>
-                    <tr class="flex justify-between mb-4 border-b-2 py-4 text-left">
-                        <th class="px-4 w-20 text-zinc-400">Id</th>
-                        <th class="px-4 w-80 text-zinc-400">Product</th>
-                        <th class="px-4 w-28 text-zinc-400">Price</th>
-                        <th class="px-4 w-24 text-zinc-400">Quantity</th>
-                        <th class="px-4 w-20 text-zinc-400">Action</th>
+                    <tr class="flex justify-between mb-4 border-b-2 py-2 text-left w-full">
+                        <th class="px-4 w-32 text-zinc-400 text-center">Id</th>
+                        <th class="px-4 w-80 text-zinc-400 text-center">Product</th>
+                        <th class="px-4 w-32 text-zinc-400 text-center">Price</th>
+                        <th class="px-4 w-24 text-zinc-400 text-center">Quantity</th>
+                        <th class="px-4 w-24 text-zinc-400 text-center">Action</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let product of products">
-                    <tr class="flex items-center cursor-pointer hover:bg-slate-100 py-2">
+                <tbody>
+                    <tr class="flex justify-between mb-4 text-left w-full hover:bg-slate-100 py-2" *ngFor="let product of products">
                         <td class="px-4 w-32 text-center">
                             <p>{{ product.id }}</p>
                         </td>
@@ -31,29 +28,40 @@
                             <p>1</p>
                         </td>
                         <td class="px-4 w-24 text-center">
-                            <button (click)="removeFromCart(product.id!)">Remove</button>
+                            <button (click)="removeFromCart(product.id!)" class="px-2 py-1 bg-zinc-500 text-white rounded-sm hover:bg-zinc-600">Remove</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="flex justify-between items-center mb-4 border-y-2 py-4 px-10 text-left w-full">
+                <label for="total-input" class="mr-8">Total:</label>
+                <input type="text" id="total-input" [value]="totalPrice | currency:'BRL'" disabled class="py-1 px-4 bg-white text-center">
+            </div>
         </div>
-
-        <!-- Formulário de Pagamento -->
         <div class="flex flex-col w-2/5 pl-8">
+            <h4 class="mb-10 text-2xl text-zinc-600">Payment</h4>
+            <form class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg" placeholder="Your Name">
+                    <label class="block text-sm font-medium   text-gray-700">Full Name</label>
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg outline-none hover:bg-zinc-50" placeholder="Your Name">
+                </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Card Number</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg" placeholder="XXXX XXXX XXXX XXXX">
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg outline-none hover:bg-zinc-50" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
                 </div>
                 <div class="flex space-x-4">
                     <div class="w-1/2">
-                        <label class="block text-sm font-medium text-gray-700">Expiry Date</label>
+                        <label class="block text-sm  font-medium text-gray-700">Expiry Date</label>
+                        <input type="text" class="w-full px-4 py-2 border rounded-lg outline-none hover:bg-zinc-50" placeholder="MM/YY">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-sm font-medium text-gray-700">CVV</label>
+                        <input type="text" class="w-full px-4 py-2 border rounded-lg outline-none hover:bg-zinc-50" placeholder="XXX">
+                    </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Billing Address</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg" placeholder="Your Address">
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg outline-none hover:bg-zinc-50" placeholder="Your Address">
                 </div>
                 <button type="submit" class="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
                     Confirm Payment
@@ -62,3 +70,4 @@
         </div>
     </section>
 </main>
+<app-footer></app-footer>

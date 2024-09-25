@@ -1,0 +1,26 @@
+<app-header></app-header>
+<app-hero></app-hero>
+<section class="bg-zinc-100 py-10">
+    <div class="mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-5">Destaques do Mês</h2>
+        <p class="text-gray-600">Confira nossos produtos mais populares e as melhores ofertas!</p>
+        <app-carousel [products]="featuredProducts"></app-carousel>
+    </div>
+</section>
+<section class="w-full py-10">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-5">Categorias</h2>
+        <p class="text-gray-600 mb-8">Explore nossas categorias e encontre o que você precisa!</p>
+        <app-category-carousel></app-category-carousel>
+    </div>
+</section>
+
+<section class="bg-zinc-100 pt-10 pb-36">
+    <div class="mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-5">Produtos</h2>
+        <p class="text-gray-600">Veja todos os produtos no nosso catálogo de produtos!</p>
+        <app-carousel [products]="products"></app-carousel>
+    </div>
+</section>
+
+<app-footer></app-footer>

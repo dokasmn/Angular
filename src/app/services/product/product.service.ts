@@ -14,7 +14,7 @@ export class ProductService {
   cartCon = 'https://dummyjson.com/carts/add';
   cartListCon = 'https://dummyjson.com/carts/user/5';
 
-  // Função para registrar produtos
+
   registerProduct(id: number, title: string, description: string, price: string): Observable<HttpResponse<ProductResponse>> {
     return this._http.post<any>(this.registerCon, {
       id: id,
@@ -36,17 +36,18 @@ export class ProductService {
     );
   }
 
-  // Função para obter todos os produtos
+
   getProducts(): Observable<HttpResponse<ProductResponse[]>> {
     return this._http.get<any>(this.listCon, { observe: 'response' })
       .pipe(
         map((res: HttpResponse<any>) => {
-          const products: ProductResponse[] = res.body.products.map((product: any) => ({
+          const products: ProductResponse[] = res.body.products.map((product: any, index:number) => ({
             id: product.id,
             title: product.title,
             description: product.description,
             price: product.price,
-            thumbnail: product.thumbnail
+            thumbnail: product.thumbnail,
+            isFeatured: index % 7 === 0 ? true : false,
           }));
           
           return res.clone({
@@ -56,7 +57,7 @@ export class ProductService {
       );
   }
 
-  // Função para adicionar produtos ao carrinho
+
   addToCart(product: ProductResponse): void {
     const storedCart = localStorage.getItem('cart');
     let newCartProducts: ProductResponse[] = storedCart ? JSON.parse(storedCart) : []; 
@@ -64,13 +65,13 @@ export class ProductService {
     localStorage.setItem('cart', JSON.stringify(newCartProducts));
   }
 
-  // Função para obter os produtos do carrinho
+
   getCartProducts(): ProductResponse[] {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : [];
   }
 
-  // Função para remover produto do carrinho
+
   removeFromCart(productId: number): void {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {

@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-category-carousel',
   standalone: true,
-  imports: [],
+  imports: [ CommonModule ],
   templateUrl: './category-carousel.component.html',
   styleUrl: './category-carousel.component.css'
 })
 export class CategoryCarouselComponent {
   categories = [
-    { name: 'Tênis', image: 'assets/tenis.png' },
-    { name: 'Chuteiras', image: 'assets/chuteira.png' },
-    { name: 'Camisas de Time', image: 'assets/camisa-time.png' },
-    { name: 'Suplementos', image: 'assets/suplementos.png' },
-    { name: 'Camisetas', image: 'assets/camiseta.png' },
-    { name: 'Jaquetas e Casacos', image: 'assets/jaqueta.png' },
-    { name: 'Mochilas', image: 'assets/mochila.png' },
+    { name: 'Makeup', image: 'imagens/makeup.png' },
+    { name: 'Perfumes', image: 'imagens/perfumes.png' },
+    { name: 'Rooms', image: 'imagens/rooms.jpg' },
+    { name: 'Food', image: 'imagens/food.png' },
+    { name: 'Ingredients', image: 'imagens/ingredients.png' },
+    { name: 'For pets', image: 'imagens/for-pets.png' },
   ];
 
   moveLeft(): void {

@@ -1,6 +1,6 @@
-<div class="py-20 relative">
-  <div class="mb-10">
-    <div class="flex justify-around mx-20">
+<div class="py-20 relative flex justify-center">
+  <div class="mb-10 flex justify-center">
+    <div class="flex justify-around mx-10 w-full space-x-20">
       <div class="flex flex-col w-80 h-96 p-4 relative border shadow-lg bg-white cursor-pointer hover:shadow-2xl" *ngFor="let product of visibleProducts">
         <div class="w-full h-40 flex justify-center mb-4">
           <img [src]="product.thumbnail" alt="{{ product.title }}" class="object-contain h-full">
@@ -14,16 +14,14 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-between px-16 absolute w-full top-1/2">
-    <button (click)="moveLeft()" class="carousel-arrow left-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl">
+  <div class="flex justify-between px-72 absolute w-full top-1/2">
+    <button (click)="moveLeft()" class="carousel-arrow left-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a esquerda">
       <i class="fas fa-chevron-left"></i>
     </button>
-    <button (click)="moveRight()" class="carousel-arrow right-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl">
+    <button (click)="moveRight()" class="carousel-arrow right-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a direita">
       <i class="fas fa-chevron-right"></i>
-    </button>
+    </button>    
   </div>
-
-  <!-- Popup de Sucesso -->
   <div *ngIf="showSuccessPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-6 rounded-lg shadow-lg">
       <h3 class="text-lg font-bold text-gray-700">Produto adicionado ao carrinho!</h3>
