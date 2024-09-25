@@ -1,8 +1,16 @@
-<header class="flex justify-between px-10 py-4" [ngClass]="isDarkBackground ? 'text-white' : 'text-gray-500'">
-    <a href="home">Logo</a >
-    <nav class="flex justify-around w-1/3">
-        <span>search</span>
-        <a href="shopping-cart">shopping cart</a>
-        <a href="product">register product</a>
+<header class="absolute top-0 flex justify-between px-10 py-4 z-10 w-full" [ngClass]="isDarkBackground ? 'text-white' : 'text-zinc-400'">
+    <a href="/">Logo</a>
+    <nav class="flex justify-around w-1/3 items-center">
+        <span>
+            <i class="fas fa-search text-xl"></i>
+        </span>
+        <a href="shopping-cart" class="flex items-center">
+            <i class="fas fa-shopping-cart text-xl mr-2"></i>
+            <!-- <span>Shopping Cart</span> -->
+        </a>
+        <a href="product" class="flex items-center">
+            <i class="fas fa-box text-xl mr-2"></i>
+            <!-- <span>Register Product</span> -->
+        </a>
     </nav>
 </header>
