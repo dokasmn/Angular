@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../componentes/global/header/header.component";
 import { FilterComponent } from "../../componentes/home/filter/filter.component";
 import { CarouselComponent } from "../../componentes/global/carousel/carousel.component";
@@ -8,6 +8,7 @@ import { CategoryCarouselComponent } from "../../componentes/home/category-carou
 import { ProductService } from '../../services/product/product.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ProductResponse } from '../../interfaces/product-response';
+import { HeaderService } from '../../services/header-service/header-service.service';
 
 @Component({
   selector: 'app-home',
@@ -20,11 +21,12 @@ export class HomeComponent implements OnInit {
   products: ProductResponse[] = [];
   featuredProducts: ProductResponse[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private headerService: HeaderService) {}
 
   ngOnInit(): void {
     this.loadProducts();
     this.loadFeaturedProducts();
+    this.updateHeaderColor(window.scrollY);
   }
 
   loadProducts(): void {
@@ -43,11 +45,29 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         const allProducts = response.body || [];
         this.featuredProducts = allProducts.filter(product => product.isFeatured);
-        console.log(this.featuredProducts)
+        console.log(this.featuredProducts);
       },
       error: (error) => {
         console.error('Erro ao carregar produtos em destaque', error);
       }
     });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    this.updateHeaderColor(window.scrollY);
+  }
+
+  updateHeaderColor(scrollY: number): void {
+    const heroHeight = document.querySelector('app-hero')?.clientHeight || 0;
+    const section1Height = document.querySelector('.bg-zinc-100')?.clientHeight || 0;
+
+    if (scrollY < heroHeight) {
+      this.headerService.setHeaderColor('text-zinc-500'); // Cor para o cabeçalho no hero
+    } else if (scrollY < heroHeight + section1Height) {
+      this.headerService.setHeaderColor('text-white'); // Cor para a primeira seção
+    } else {
+      this.headerService.setHeaderColor('text-zinc-500'); // Cor padrão para as demais seções
+    }
   }
 }

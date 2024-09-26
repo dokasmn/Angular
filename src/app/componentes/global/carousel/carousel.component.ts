@@ -14,9 +14,8 @@ export class CarouselComponent implements OnInit {
   @Input() products: ProductResponse[] = [];
   visibleProducts: ProductResponse[] = [];
   currentIndex: number = 0;
-
-  // Variável para controle do popup de sucesso
   showSuccessPopup: boolean = false;
+  isTransitioning: boolean = false;
 
   constructor(private productService: ProductService) {}
 
@@ -29,11 +28,16 @@ export class CarouselComponent implements OnInit {
   }
 
   updateVisibleProducts(): void {
-    this.visibleProducts = this.products.slice(this.currentIndex, this.currentIndex + 3);
-    this.visibleProducts = this.visibleProducts.map(product => ({
-      ...product,
-      description: this.truncateDescription(product.description, 80)
-    }));
+    // Adiciona um pequeno delay para simular a transição entre os produtos
+    this.isTransitioning = true;
+    setTimeout(() => {
+      this.visibleProducts = this.products.slice(this.currentIndex, this.currentIndex + 3);
+      this.visibleProducts = this.visibleProducts.map(product => ({
+        ...product,
+        description: this.truncateDescription(product.description, 80)
+      }));
+      this.isTransitioning = false;
+    }, 300); // A duração da transição deve ser sincronizada com a do Tailwind
   }
 
   moveLeft(): void {
@@ -51,15 +55,13 @@ export class CarouselComponent implements OnInit {
   }
 
   addToCart(product: ProductResponse): void {
-    this.productService.addToCart(product)
+    this.productService.addToCart(product);
     this.showSuccessPopup = true;
   }
-
 
   closeSuccessPopup() {
     this.showSuccessPopup = false;
   }
-
 
   truncateDescription(description: string, maxLength: number): string {
     return description.length > maxLength ? description.slice(0, maxLength) + '...' : description;

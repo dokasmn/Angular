@@ -1,25 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderService } from '../../../services/header-service/header-service.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isDarkBackground: boolean = false;
-  router = inject(Router);
+  headerColor: string = 'text-zinc-500';
+
+  constructor(private headerService: HeaderService) {}
 
   ngOnInit(): void {
-    const currentRoute = this.router.url;
-    if (currentRoute === '/' || currentRoute === '/login') {
-      this.isDarkBackground = true;
-    } else {
-      this.isDarkBackground = false;
-    }
+    this.headerService.headerColor$.subscribe(color => {
+      this.headerColor = color;
+    });
   }
-
 }
