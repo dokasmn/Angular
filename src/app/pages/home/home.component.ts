@@ -6,14 +6,14 @@ import { FooterComponent } from "../../componentes/global/footer/footer.componen
 import { HeroComponent } from '../../componentes/home/hero/hero.component';
 import { CategoryCarouselComponent } from "../../componentes/home/category-carousel/category-carousel.component";
 import { ProductService } from '../../services/product/product.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ProductResponse } from '../../interfaces/product-response';
 import { HeaderService } from '../../services/header-service/header-service.service';
+import { FeaturedCarouselComponent } from '../../componentes/home/featured-carousel/featured-carousel.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FilterComponent, CarouselComponent, FooterComponent, HeroComponent, CategoryCarouselComponent],
+  imports: [HeaderComponent, FilterComponent, CarouselComponent, FooterComponent, HeroComponent, CategoryCarouselComponent, FeaturedCarouselComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

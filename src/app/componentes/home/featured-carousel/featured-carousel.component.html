@@ -1,0 +1,23 @@
+<div class="w-full py-10 px-8 relative flex justify-center">
+    <div class="mb-10 flex w-full h-full">
+      <div class="flex w-full space-x-12">
+        <div 
+          *ngFor="let product of visibleProducts"
+          class="transition-opacity duration-300 ease-in-out text-left pt-12 pl-12 transform rounded-3xl hover: flex flex-col w-full p-4 relative text-white">
+          <!-- <h4 class="mb-24 text-2xl font-semibold">{{ product.title }}</h4> -->
+          <div class="flex justify-center mb-4 z-10">
+            <img [src]="product.thumbnail" alt="{{ product.title }}" class="object-contain h-full">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between px-20 absolute w-full top-1/2">
+      <button (click)="moveLeft()" class="carousel-arrow left-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a esquerda">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button (click)="moveRight()" class="carousel-arrow right-arrow text-xl bg-zinc-300 text-zinc-600 py-1 px-3 rounded-3xl" aria-label="Mover para a direita">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+  
