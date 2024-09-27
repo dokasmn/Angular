@@ -5,15 +5,15 @@ import { Component, OnInit } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  styleUrls: ['./hero.component.css']
 })
-
 export class HeroComponent implements OnInit {
   
+  activeVideo: string = 'waves-reflection.mp4';
+
   ngOnInit(): void {
     window.addEventListener('scroll', this.handleParallax);
   }
-
 
   handleParallax = () => {
     const scrollPosition = window.scrollY;
@@ -22,5 +22,11 @@ export class HeroComponent implements OnInit {
       parallaxVideo.style.transform = `translateY(${scrollPosition * 0.5}px)`;
     }
   };
-}
 
+  changeVideo(videoSrc: string): void {
+    const videoElement = document.getElementById('hero-video') as HTMLVideoElement;
+    videoElement.src = videoSrc;
+    videoElement.play();
+    this.activeVideo = videoSrc.split('/').pop() as string;
+  }
+}

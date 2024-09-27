@@ -1,14 +1,18 @@
 <article class="relative h-screen overflow-hidden">
-    <div class="relative flex items-center justify-center h-full text-center">
-      <video autoplay muted loop class="parallax-video absolute inset-0 w-full h-full object-cover">
-        <source src="videos/waves-reflection.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo em HTML5.
+  <div class="relative flex items-center justify-center h-full text-center">
+      <video id="hero-video" autoplay muted loop class="parallax-video absolute inset-0 w-full h-full object-cover">
+          <source src="videos/waves-reflection.mp4" type="video/mp4">
+          Seu navegador não suporta vídeo em HTML5.
       </video>
       <div class="relative z-10 text-white">
-        <h1 class="text-5xl font-bold">Welcome to my E-commerce</h1>
-        <p class="mt-4 text-2xl">Discover amazing products for you.</p>
-        <a href="#about" class="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700">Learn More</a>
+          <h1 class="text-5xl font-bold">Welcome to my E-commerce</h1>
+          <p class="mt-4 text-2xl">Discover amazing products for you.</p>
+          <a href="#about" class="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700">Learn More</a>
       </div>
-    </div>
-  </article>
-  
+  </div>
+  <div class="absolute bottom-40 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div class="dot w-3 h-3 bg-white rounded-full cursor-pointer" (click)="changeVideo('videos/waves-reflection.mp4')" [class.bg-blue-600]="activeVideo === 'waves-reflection.mp4'"></div>
+      <div class="dot w-3 h-3 bg-white rounded-full cursor-pointer" (click)="changeVideo('videos/another-video.mp4')" [class.bg-blue-600]="activeVideo === 'another-video.mp4'"></div>
+      <div class="dot w-3 h-3 bg-white rounded-full cursor-pointer" (click)="changeVideo('videos/yet-another-video.mp4')" [class.bg-blue-600]="activeVideo === 'yet-another-video.mp4'"></div>
+  </div>
+</article>
